@@ -10,7 +10,7 @@ import com.vivs.cursomc.domain.PagamentoComCartao;
 
 /*classe de configuração -  vai ter algum método ou alguma informação que ela 
  * vai estar disponível no sistema e vai ser configurada no inicio da execução 
- * da aplicação
+ * da aplicação - @type
  */
 @Configuration
 public class JacksonConfig {
