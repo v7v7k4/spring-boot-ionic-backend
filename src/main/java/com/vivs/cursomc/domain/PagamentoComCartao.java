@@ -2,8 +2,10 @@ package com.vivs.cursomc.domain;
 
 import javax.persistence.Entity;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.vivs.cursomc.domain.enums.EstadoPagamento;
 @Entity
+@JsonTypeName("pagamentoComCartao") //@type aparece no json como pagamentoComBoleto ou pagamentoComCartao
 public class PagamentoComCartao extends Pagamento {
 	private static final long serialVersionUID = 8899730996839836308L;
 	private Integer numeroDeParcelas;
