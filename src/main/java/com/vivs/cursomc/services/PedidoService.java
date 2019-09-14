@@ -68,8 +68,16 @@ public class PedidoService {
 			ip.setPreco(ip.getProduto().getPreco());
 			ip.setPedido(obj);
 		}
-		//obj.getItens().forEach(itemPedido-> itemPedido.setDesconto(0.0));
+		/*Pedido pedido = obj;
+		List<ItemPedido> listaItemAtualizado = 
+				obj.getItens().stream()
+			             .peek(ip -> ip.setDesconto(0.0))
+			             .peek(ip -> ip.setProduto(produtoService.find(ip.getProduto().getId())))
+			             .peek(ip -> ip.setPreco(ip.getProduto().getPreco()))
+			             .peek(ip -> ip.setPedido(pedido))
+			             .collect (Collectors.toList());*/
 		itemPedidoRepository.saveAll(obj.getItens());
+		//itemPedidoRepository.saveAll(listaItemAtualizado);
 		
 		System.out.println(obj);
 		emailService.sendOrderConfirmationEmail(obj);
