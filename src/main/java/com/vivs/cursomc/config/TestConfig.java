@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import com.vivs.cursomc.services.DBService;
+import com.vivs.cursomc.services.EmailService;
+import com.vivs.cursomc.services.MockEmailService;
 
 @Configuration
 @Profile("test") //application-test.properties
@@ -21,6 +23,11 @@ public class TestConfig {
 	public boolean instantiateDatabase() {
 		dbService.instantiateTestDatabase();
 		return true;
+	}
+	
+	@Bean
+	public EmailService emailService() {
+		return new MockEmailService();
 	}
 
 }
