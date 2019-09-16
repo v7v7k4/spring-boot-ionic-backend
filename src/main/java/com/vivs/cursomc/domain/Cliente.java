@@ -35,6 +35,9 @@ public class Cliente implements Serializable {
 	private String cpfOuCnpj;
 //	private TipoCliente tipo;
 	private Integer tipo;
+	
+	@JsonIgnore //não aparecer esse campo no json
+	private String senha;
 	//cliente pode serializar os endereços dele mas o endereço não pode serializar o cliente
 	//@JsonManagedReference
 	@OneToMany(mappedBy="cliente", cascade=CascadeType.ALL)
@@ -54,13 +57,14 @@ public class Cliente implements Serializable {
 		
 	}
 
-	public Cliente(Integer id, String nome, String email, String cpfOuCnpj, TipoCliente tipo) {
+	public Cliente(Integer id, String nome, String email, String cpfOuCnpj, TipoCliente tipo, String senha) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
 		this.cpfOuCnpj = cpfOuCnpj;
 		this.tipo = tipo == null ? null : tipo.getCodigo();
+		this.senha = senha;
 	}
 
 	public Integer getId() {
@@ -101,6 +105,14 @@ public class Cliente implements Serializable {
 
 	public void setTipo(TipoCliente tipo) {
 		this.tipo = tipo.getCodigo();
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
 	public List<Endereco> getEnderecos() {
