@@ -19,6 +19,7 @@ import com.vivs.cursomc.domain.PagamentoComCartao;
 import com.vivs.cursomc.domain.Pedido;
 import com.vivs.cursomc.domain.Produto;
 import com.vivs.cursomc.domain.enums.EstadoPagamento;
+import com.vivs.cursomc.domain.enums.Perfil;
 import com.vivs.cursomc.domain.enums.TipoCliente;
 import com.vivs.cursomc.repositories.CategoriaRepository;
 import com.vivs.cursomc.repositories.CidadeRepository;
@@ -123,13 +124,20 @@ public class DBService {
 				TipoCliente.PESSOAFISICA, bCryptPasswordEncoder.encode("12345"));
 		cli1.getTelefones().addAll(Arrays.asList("27363323", "93838393"));
 
+		Cliente cli2 = new Cliente(null, "Ana Costa", "vivsfrick@yahoo.com", "18068104097",
+				TipoCliente.PESSOAFISICA, bCryptPasswordEncoder.encode("123456"));
+		cli2.addPerfil(Perfil.ADMIN);
+		cli2.getTelefones().addAll(Arrays.asList("943565432", "22345432"));
+		
 		Endereco e1 = new Endereco(null, "Rua Flores", "300", "Apto: 303", "Jardim", "38220834", cli1, c1);
 		Endereco e2 = new Endereco(null, "Avenida Matos", "105", "Sala 800", "Centro", "38777012", cli1, c2);
+		Endereco e3 = new Endereco(null, "Avenida Floriano", "2106", null, "Centro", "28177012", cli2, c2);
 
 		cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
+		cli2.getEnderecos().addAll(Arrays.asList(e3));
 
-		clienteRepository.saveAll(Arrays.asList(cli1));
-		enderecoRepository.saveAll(Arrays.asList(e1, e2));
+		clienteRepository.saveAll(Arrays.asList(cli1, cli2));
+		enderecoRepository.saveAll(Arrays.asList(e1, e2, e3));
 
 		Pedido ped1 = new Pedido(null, LocalDateTime.of(2017, 9, 30, 10, 32), cli1, e1);
 		Pedido ped2 = new Pedido(null, LocalDateTime.of(2017, 10, 10, 19, 35), cli1, e2);
