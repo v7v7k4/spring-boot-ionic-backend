@@ -19,6 +19,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.vivs.cursomc.security.JWTAuthenticationFilter;
+import com.vivs.cursomc.security.JWTAuthorizationFilter;
 import com.vivs.cursomc.security.JWTUtil;
 
 @Configuration
@@ -51,6 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.cors().and().csrf().disable().authorizeRequests().antMatchers(HttpMethod.GET, PUBLIC_MATCHERS_GET)
 				.permitAll().antMatchers(PUBLIC_MATCHERS).permitAll().anyRequest().authenticated().and()
 				.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil))
+				.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtUtil, userDetailsService))
 				// assegurar que o backend não vai criar sessão de usuário
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	}

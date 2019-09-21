@@ -19,6 +19,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vivs.cursomc.dto.CredenciaisDTO;
 
+//filtro que intercepta a requisição de login, verifica as credenciais e autentica ou não o usuário gerando o token jwt em caso de autenticação
+//Para autenticar - post no /login, passando email e senha no body, retorna o status 200 (OK) e no headers vai ter o token (bearer)
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
 	/*
