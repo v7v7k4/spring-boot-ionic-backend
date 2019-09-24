@@ -10,7 +10,7 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 
-@Configuration
+//@Configuration
 public class S3Config {
 	
 	@Value("${aws.access_key_id}")

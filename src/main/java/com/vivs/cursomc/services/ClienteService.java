@@ -40,6 +40,9 @@ public class ClienteService {
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
+//	@Autowired
+//	private S3Service s3service;
+	
 	public Cliente find(Integer id) {
 		UserSS user = UserService.authenticated();
 		//se o usuário não é admin e se o id do parâmetro é diferente do id do usuário logado
@@ -111,5 +114,9 @@ public class ClienteService {
 		
 		return cli;
 	}
+	
+//	public URI uploadProfilePicture(MultipartFile multipartFile) {
+//		return s3service.upload(multipartFile);
+//	}
 
 }
