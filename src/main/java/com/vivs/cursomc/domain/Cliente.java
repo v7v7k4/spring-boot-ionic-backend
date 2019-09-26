@@ -61,7 +61,6 @@ public class Cliente implements Serializable {
 	 @CollectionTable(name="PERFIS")
 	 private Set<Integer> perfis = new HashSet<>();
 	 
-	 private String imageUrl;
 	 
 	public Cliente() {
 		//todo usuário automaticamente será um cliente por default, os que forem determinados serão admin também
@@ -157,14 +156,6 @@ public class Cliente implements Serializable {
 
 	public void setPedidos(List<Pedido> pedidos) {
 		this.pedidos = pedidos;
-	}
-
-	public String getImageUrl() {
-		return imageUrl;
-	}
-
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
 	}
 
 	@Override
