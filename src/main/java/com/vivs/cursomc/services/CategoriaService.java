@@ -1,9 +1,11 @@
 package com.vivs.cursomc.services;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,14 +22,20 @@ import com.vivs.cursomc.services.exceptions.ObjectNotFoundException;
 @Service
 public class CategoriaService {
 	
+
+	@Autowired
+    private MessageSource messageSource;
+	
 	//dependencia automaticamente instanciada pelo spring 
 	@Autowired
 	private CategoriaRepository categoriaRepository;
 	
 	public Categoria find(Integer id) {
 		Optional<Categoria> obj = categoriaRepository.findById(id);
+//		return obj.orElseThrow(() -> new ObjectNotFoundException(
+//				"Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName()));
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
-				"Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName()));
+				messageSource.getMessage("objeto.naoencontrado", null, Locale.ENGLISH)));
 	}
 
 	public Categoria insert(Categoria categoria) {

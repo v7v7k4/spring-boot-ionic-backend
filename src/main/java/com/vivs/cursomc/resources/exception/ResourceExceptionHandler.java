@@ -20,7 +20,7 @@ import com.vivs.cursomc.services.exceptions.ObjectNotFoundException;
 //classe de tratamento de erro para não poluir os resources
 @ControllerAdvice
 public class ResourceExceptionHandler {
-	
+		
 	//no caso de objeto não encontrado
 	@ExceptionHandler(ObjectNotFoundException.class)
 	public ResponseEntity<StandardError> objectNotFound(ObjectNotFoundException e, HttpServletRequest request){
