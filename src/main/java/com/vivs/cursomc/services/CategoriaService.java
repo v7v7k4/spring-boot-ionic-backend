@@ -35,7 +35,7 @@ public class CategoriaService {
 //		return obj.orElseThrow(() -> new ObjectNotFoundException(
 //				"Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName()));
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
-				messageSource.getMessage("objeto.naoencontrado", null, Locale.ENGLISH)));
+				messageSource.getMessage("objeto.naoencontrado.id", new Object[] {id}, Locale.ENGLISH)));
 	}
 
 	public Categoria insert(Categoria categoria) {
